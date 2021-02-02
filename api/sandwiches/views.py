@@ -7,8 +7,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .models import Order, Sand_Ing, Sandwich, Size, Ingredient
-from .serializers import OrderSerializer, Sand_IngSerializer, SandwichSerializer, SizeSerializer, IngredientSerializer
+from .models import Order, Sand_Ing, Sandwich, Size, Ingredient, User
+from .serializers import OrderSerializer, Sand_IngSerializer, SandwichSerializer, SizeSerializer, IngredientSerializer, UserSerializer
 
 # Create your views here.
 
@@ -47,7 +47,7 @@ def register_order(request):
         price_order += price_sandwich
     request.data['price'] = price_order
 
-    order = Order.objects.create(price=request.data['price'])
+    order = Order.objects.create(price=request.data['price'], user=User.objects.get(id=request.data['user']['id']))
 
     for s in request.data['sandwiches']:
 
@@ -60,8 +60,6 @@ def register_order(request):
                 ingredient=Ingredient.objects.get(id=i['id']),
                 rations=i['rations']
             )
-
-
     
     serializer = OrderSerializer(order, many=False)
     return Response(serializer.data)
@@ -82,5 +80,11 @@ def get_all_sandwich_size(request):
 def get_orders_day(request):
     date = datetime.datetime.strptime(request.data['date'], '%Y-%m-%d')
     order = Order.objects.filter(date__date = date)
+    serializer = OrderSerializer(order, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def get_all_sandwich_user(request):
+    order = Order.objects.filter(user = User.objects.get(id=request.data['id']))
     serializer = OrderSerializer(order, many=True)
     return Response(serializer.data)
