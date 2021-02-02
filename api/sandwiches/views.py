@@ -40,7 +40,7 @@ def register_order(request):
     for r in request.data['sandwiches']:
         price_sandwich = float(r['size']['price'])
         for i in r['ingredients']:
-            price_sandwich += float(i['price'])*float(i['rations'])
+            price_sandwich += float(i['price']) # *float(i['rations'])
         r['price'] = price_sandwich
         price_order += price_sandwich
     request.data['price'] = price_order
@@ -62,4 +62,10 @@ def register_order(request):
 
     
     serializer = OrderSerializer(order, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_all_orders(request):
+    order = Order.objects.all()
+    serializer = OrderSerializer(order, many=True)
     return Response(serializer.data)
