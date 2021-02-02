@@ -3,9 +3,15 @@ from django.utils import timezone
 
 # Create your models here.
 
+class User(models.Model):
+    document = models.CharField(max_length=20)
+    firt_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+
 class Order(models.Model):
     date = models.DateTimeField(default=timezone.now)
     price = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
+    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
 
 class Size(models.Model):
     name = models.CharField(max_length=80, blank=True)
