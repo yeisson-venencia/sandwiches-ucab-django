@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import Order, Sand_Ing, Sandwich, Size, Ingredient
 
 class OrderSerializer(serializers.ModelSerializer):
+    sandwiches = serializers.PrimaryKeyRelatedField(many=True, queryset=Sandwich.objects.all())
+
     class Meta:
         model = Order
         fields = '__all__'

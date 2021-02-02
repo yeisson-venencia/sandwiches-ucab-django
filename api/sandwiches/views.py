@@ -32,3 +32,21 @@ def size_list(request):
     sizes = Size.objects.all()
     serializer = SizeSerializer(sizes, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def sandwich_list(request):
+    sandwiches = Sandwich.objects.all()
+    serializer = SandwichSerializer(sandwiches, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def order_list(request):
+    orders = Order.objects.all()
+    serializer = OrderSerializer(orders, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def create_order(request):
+    print('holaaaa')
+    print(request.data)
+    return Response('OK')

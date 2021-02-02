@@ -16,8 +16,9 @@ class Ingredient(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=20)
 
 class Sandwich(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name='sandwiches',  on_delete=models.CASCADE)
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
+    ingredients = models.ManyToManyField(Ingredient, related_name='ingredients', through='Sand_Ing')
 
 class Sand_Ing(models.Model):
     rations = models.IntegerField()
