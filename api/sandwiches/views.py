@@ -69,3 +69,10 @@ def get_all_orders(request):
     order = Order.objects.all()
     serializer = OrderSerializer(order, many=True)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def get_all_sandwich_size(request):
+    sandwich = Sandwich.objects.filter(size=Size.objects.get(id=request.data['id']))
+    serializer = SandwichSerializer(sandwich, many=True)
+    return Response(serializer.data)
