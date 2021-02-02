@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-order',
@@ -7,35 +10,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  headers:any;
+  rows:any;
+  private sizeSelected: String = '';
+  private ingredientSelected: String = '';
+  numero:Number=-1;
+  ingredients = ['Salchicha','Queso','Champiñones','Jamon','Peperoni']
 
-  ngOnInit(): void {
+  constructor(private router: Router) { 
+    this.headers = ["Numero","Tamaño","Ingrediente(s)"];
+    
   }
 
-  headers = ["Número","Tamaño","Ingredientes"];
-  size=["Grande","Medio","Pequeño"];
-  ingredients = ["Jamon","Champiñones","Pimenton","Doble queso"];
+  ngOnInit(): void {
+    
+  }
 
-  rows =[
-    {
-      "Número":"1",
-      "Tamaño":"Pequeño",
-      "Ingredientes":["Salami"," Chorizo"]
-    },
-    {
-      "Número":"2",
-      "Tamaño":"Grande",
-      "Ingredientes":"Salchica"
-    },
-    {
-      "Número":"3",
-      "Tamaño":"Mediano",
-      "Ingredientes":"Chorizo"
+  addSandwich(){
+    let inputElement:any = document.getElementsByTagName("input");
+     
+    for(let i of inputElement){
+      console.log('ID: '+ i.getAttribute('id'));
+      console.log('Valor: '+ i.value);
+      
     }
-  ];
+    
+  }
+  
+  selectSize(event:any){
+    this.sizeSelected = event.target.value;
+    console.log(this.sizeSelected);
+    
+  }
 
-  agregar(){
-    this.rows.push({"Número":"3","Tamaño":"Mediano","Ingredientes":"Chorizo"})
+  selectIngredient(event:any){
+    this.ingredientSelected = event.target.value;
+    console.log(this.ingredientSelected);
+    
+  }
+
+  goBack(){
+    this.router.navigate(['/home'])
+
   }
 
 }
