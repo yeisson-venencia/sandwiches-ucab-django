@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 import { OrderComponent } from './pages/order/order.component';
+import { BillComponent } from './pages/bill/bill.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NopagefoundComponent,
-    OrderComponent
+    OrderComponent,
+    BillComponent
   ],
   imports: [
     BrowserModule,

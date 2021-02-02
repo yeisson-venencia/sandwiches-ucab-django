@@ -20,4 +20,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/order'])
   }
 
+  hacerFactura(){
+    this.router.navigate(['/bill']);
+
+  }
+
 }

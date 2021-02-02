@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { $ } from 'protractor';
 
 @Component({
@@ -16,7 +17,7 @@ export class OrderComponent implements OnInit {
   numero:Number=-1;
   ingredients = ['Salchicha','Queso','Champiñones','Jamon','Peperoni']
 
-  constructor() { 
+  constructor(private router: Router) { 
     this.headers = ["Numero","Tamaño","Ingrediente(s)"];
     
   }
@@ -46,6 +47,11 @@ export class OrderComponent implements OnInit {
     this.ingredientSelected = event.target.value;
     console.log(this.ingredientSelected);
     
+  }
+
+  goBack(){
+    this.router.navigate(['/home'])
+
   }
 
 }
