@@ -5,6 +5,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from .models import Order, Sand_Ing, Sandwich, Size, Ingredient
+from .serializers import OrderSerializer, Sand_IngSerializer, SandwichSerializer, SizeSerializer, IngredientSerializer
+
 # Create your views here.
 
 @api_view(['GET'])
@@ -17,3 +20,9 @@ def apiOverview(request):
     }
 
     return Response(api_urls)
+
+@api_view(['GET'])
+def ingredient_list(request):
+    ingredients = Ingredient.objects.all()
+    serializer = IngredientSerializer(ingredients, many=True)
+    return Response(serializer.data)
