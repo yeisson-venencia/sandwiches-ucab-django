@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Our applications
     'sandwiches',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

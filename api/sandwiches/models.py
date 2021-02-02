@@ -7,7 +7,6 @@ class Order(models.Model):
     date = models.DateTimeField(default=timezone.now)
     price = models.DecimalField(decimal_places=2, max_digits=20)
 
-
 class Size(models.Model):
     name = models.CharField(max_length=80)
     price = models.DecimalField(decimal_places=2, max_digits=20)
@@ -24,4 +23,3 @@ class Sand_Ing(models.Model):
     rations = models.IntegerField()
     sandwich = models.ForeignKey(Sandwich, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-
