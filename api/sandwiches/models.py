@@ -22,11 +22,12 @@ class Ingredient(models.Model):
         return self.name
 
 class Sandwich(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True)
+    order = models.ForeignKey(Order, related_name='sandwiches', on_delete=models.CASCADE, blank=True)
     size = models.ForeignKey(Size, on_delete=models.CASCADE, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
+    #ingredients = models.ManyToManyField(Ingredient, related_name='ingredients', through='Sand_Ing')
 
 class Sand_Ing(models.Model):
     rations = models.IntegerField()
-    sandwich = models.ForeignKey(Sandwich, on_delete=models.CASCADE, blank=True)
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE, blank=True)
+    sandwich = models.ForeignKey(Sandwich, related_name='ingredients', on_delete=models.CASCADE, blank=True)
+    ingredient = models.ForeignKey(Ingredient, related_name='ingredient', on_delete=models.CASCADE, blank=True)
