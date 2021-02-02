@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -67,5 +69,12 @@ def register_order(request):
 @api_view(['GET'])
 def get_all_orders(request):
     order = Order.objects.all()
+    serializer = OrderSerializer(order, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def get_orders_day(request):
+    date = datetime.datetime.strptime(request.data['date'], '%Y-%m-%d')
+    order = Order.objects.filter(date__date = date)
     serializer = OrderSerializer(order, many=True)
     return Response(serializer.data)
