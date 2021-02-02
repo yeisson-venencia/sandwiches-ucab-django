@@ -32,3 +32,34 @@ def size_list(request):
     sizes = Size.objects.all()
     serializer = SizeSerializer(sizes, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def register_order(request):
+
+    price_order = 0
+    for r in request.data['sandwiches']:
+        price_sandwich = float(r['size']['price'])
+        for i in r['ingredients']:
+            price_sandwich += float(i['price'])*float(i['rations'])
+        r['price'] = price_sandwich
+        price_order += price_sandwich
+    request.data['price'] = price_order
+
+    order = Order.objects.create(price=request.data['price'])
+
+    for s in request.data['sandwiches']:
+
+        sandwich = Sandwich.objects.create(order=order, size=Size.objects.get(id=s['size']['id']), price=s['price'])
+
+        for i in s['ingredients']:
+
+            Sand_Ing.objects.create(
+                sandwich=sandwich, 
+                ingredient=Ingredient.objects.get(id=i['id']),
+                rations=i['rations']
+            )
+
+
+    
+    serializer = OrderSerializer(order, many=False)
+    return Response(serializer.data)
