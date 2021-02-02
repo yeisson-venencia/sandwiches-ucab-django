@@ -5,21 +5,29 @@ from django.utils import timezone
 
 class Order(models.Model):
     date = models.DateTimeField(default=timezone.now)
-    price = models.DecimalField(decimal_places=2, max_digits=20)
+    price = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
 
 class Size(models.Model):
-    name = models.CharField(max_length=80)
-    price = models.DecimalField(decimal_places=2, max_digits=20)
+    name = models.CharField(max_length=80, blank=True)
+    price = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 class Ingredient(models.Model):
-    name = models.CharField(max_length=80)
-    price = models.DecimalField(decimal_places=2, max_digits=20)
+    name = models.CharField(max_length=80, blank=True)
+    price = models.DecimalField(decimal_places=2, max_digits=20, blank=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 class Sandwich(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    size = models.ForeignKey(Size, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name='sandwiches', on_delete=models.CASCADE, blank=True)
+    size = models.ForeignKey(Size, on_delete=models.CASCADE, blank=True)
+    price = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
+    #ingredients = models.ManyToManyField(Ingredient, related_name='ingredients', through='Sand_Ing')
 
 class Sand_Ing(models.Model):
     rations = models.IntegerField()
-    sandwich = models.ForeignKey(Sandwich, on_delete=models.CASCADE)
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    sandwich = models.ForeignKey(Sandwich, related_name='ingredients', on_delete=models.CASCADE, blank=True)
+    ingredient = models.ForeignKey(Ingredient, related_name='ingredient', on_delete=models.CASCADE, blank=True)
