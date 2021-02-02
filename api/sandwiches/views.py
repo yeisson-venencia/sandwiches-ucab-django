@@ -26,3 +26,9 @@ def ingredient_list(request):
     ingredients = Ingredient.objects.all()
     serializer = IngredientSerializer(ingredients, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def size_list(request):
+    sizes = Size.objects.all()
+    serializer = SizeSerializer(sizes, many=True)
+    return Response(serializer.data)

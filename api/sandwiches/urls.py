@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.apiOverview,  name='api-overview'),
-    path('ingredients-list/', views.ingredient_list,  name='api-ingredient-list'),
+    path('ingredient-list/', views.ingredient_list,  name='api-ingredient-list'),
+    path('size-list/', views.size_list,  name='api-size-list'),
 ]
