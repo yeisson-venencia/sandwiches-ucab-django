@@ -78,3 +78,18 @@ def get_orders_day(request):
     order = Order.objects.filter(date__date = date)
     serializer = OrderSerializer(order, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def get_sandwich_ingredient(request):
+
+    ingredient = Ingredient.objects.get(id = request.data['ingredient']['id'])
+
+    sand_ingres = ingredient.ingredient.all()
+
+    sandwiches = set()
+
+    for si in sand_ingres:
+        sandwiches.add(si.sandwich)
+    serializer = SandwichSerializer(sandwiches, many=True)
+
+    return Response(serializer.data)
