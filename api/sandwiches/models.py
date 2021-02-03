@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class User(models.Model):
     document = models.CharField(max_length=20)
-    firt_name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
 
 class Order(models.Model):
@@ -31,7 +31,6 @@ class Sandwich(models.Model):
     order = models.ForeignKey(Order, related_name='sandwiches', on_delete=models.CASCADE, blank=True)
     size = models.ForeignKey(Size, on_delete=models.CASCADE, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
-    #ingredients = models.ManyToManyField(Ingredient, related_name='ingredients', through='Sand_Ing')
 
 class Sand_Ing(models.Model):
     rations = models.IntegerField()

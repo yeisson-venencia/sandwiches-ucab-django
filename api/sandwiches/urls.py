@@ -10,5 +10,6 @@ urlpatterns = [
     path('get-sandwiches-ingredient/', views.get_sandwich_ingredient, name='api-get-sandwiches-ingredient'),
     path('get-all-sandwich-size/',views.get_all_sandwich_size, name='get-all-sandwich-size'),
     path('get-orders-day/', views.get_orders_day, name='api-get-orders-day'),
-    path('get-all-sandwich-user/', views.get_all_sandwich_user, name='get-all-sandwich-user'),
+    path('get-all-sandwich-user/', views.get_all_sandwich_user, name='api-get-all-sandwich-user'),
+    path('verify-user/', views.verify_user, name='api-verify-user'),
 ]
