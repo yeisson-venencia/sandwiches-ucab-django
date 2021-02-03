@@ -1,6 +1,5 @@
 .main {
     background-image: url(../assets/image/sandwich.jpg);
-    background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
 }
