@@ -1,0 +1,94 @@
+<br>
+<div class="container">
+    <button class="btn btn-dark" (click)="goBack()">Regresar</button>
+</div>
+<form (ngSubmit)="addSandwich()">
+    <div class="container">
+        <div class="row justify-content-center">
+            <select name="size" (change)="selectSize($event)" class="btn btn-dark">
+                <option [ngValue]="null" disabled selected>Tamaño</option>
+                <option *ngFor="let options of size"> {{options}} </option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="container col-6">
+        <div class="row">
+            <div class="col">
+                <h3 *ngFor="let options of ingredients" style="margin-top: 5px;color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;"><strong>{{options}}</strong> </h3>
+            </div>
+            <div class="col">
+                <input type="number" *ngFor="let options of ingredients" id="{{options}}" style="width: 100%;margin-top: 7px; ">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container col-6">
+        <div class="row">
+            <div class="col justify-content-center">
+                    <button type="button" (click)="addSandwich()" class="btn btn-dark">
+                    Añadir sandwich
+                    </button>
+            </div>
+            <div class="col justify-content-right">
+                    <button type="button" (click)="toggle()" class="btn btn-dark">
+                    Realizar Pago
+                    </button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <form (ngSubmit)="payBill()">
+        <div class="container col-6" *ngIf="checkout">
+            <div class="row">
+                <div class="col">
+                    <h3  style="margin-top: 5px;color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;"><strong>Cedula</strong></h3>
+                    <h3  style="margin-top: 5px;color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;"><strong>Nombre</strong></h3>
+                    <h3  style="margin-top: 5px;color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;"><strong>Apellido</strong></h3>
+                </div>
+                <div class="col">
+                    <input type="text" style="width: 100%;margin-top: 7px;" id="Cedula" value="26573051">
+                    <input type="text" style="width: 100%;margin-top: 7px; " id="Nombre" value="max">
+                    <input type="text" style="width: 100%;margin-top: 7px; " id="Apellido" value="bogo">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container col-6" *ngIf="checkout">
+            <div class="row">
+                <div class="col justify-content-center">
+                    <button type="submit" class="btn btn-dark">
+                    Realizar Pago
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    
+    <br>
+    <div class="container col-8">
+        <table class="table table-borderedd" style="border: 3px solid black">
+            <thead>
+            <tr>
+                <th *ngFor ="let column of headers" style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                {{column}}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let row of rows">
+                <td *ngFor="let column of headers" style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                {{row[column]}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    
+    
+    
+    
+</form>
