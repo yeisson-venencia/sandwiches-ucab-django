@@ -128,10 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-<<<<<<< HEAD
 # Django
-migrations/
-=======
+migrations
 .DS_STORE
 
 /dist/
@@ -189,4 +187,3 @@ tools/gulp-tasks/cldr/cldr-data/
 
 # Husky
 .husky/_
->>>>>>> PR2-010

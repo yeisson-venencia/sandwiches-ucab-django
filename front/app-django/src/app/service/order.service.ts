@@ -48,13 +48,13 @@ export class OrderService {
   payBill(orden:any){
     let body = {};
     let url = this.baseUrl + 'register-order/'
-    let user = {};
+    /* let user = {};
     user["document"]="4789623";
     user["first_name"]="Jose";
     user["last_name"]="Jose";
 
     body["usuario"]= []
-    body["usuario"].push(user);
+    body["usuario"].push(user); */
     body["sandwiches"] = [];
     
     for(let i of orden){
