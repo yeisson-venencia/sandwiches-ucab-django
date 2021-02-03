@@ -1,0 +1,96 @@
+<br>
+<br>
+
+<h2 class="row justify-content-center"><strong style="color: black; text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;">Ventas por tamaño</strong> </h2>
+<div class="container col-8">
+
+    <h2 style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">sandwiches individuales</h2>
+
+    <table class="table table-bordered table-striped" style="border: 3px solid black">
+        <thead>
+            <tr>
+                <th *ngFor="let column of headers" style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{column}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of individuales">
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.order}}
+                </td>
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.size.name}}
+                </td>
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.price}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+<br>
+<br>
+<div class="container col-8">
+
+    <h2 style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">sandwiches dobles</h2>
+
+    <table class="table table-bordered table-striped" style="border: 3px solid black">
+        <thead>
+            <tr>
+                <th *ngFor="let column of headers" style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{column}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of dobles">
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.order}}
+                </td>
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.size.name}}
+                </td>
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.price}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+<br>
+<br>
+
+<div class="container col-8">
+
+    <h2 style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">sandwiches triples</h2>
+
+    <table class="table table-bordered table-striped" style="border: 3px solid black">
+        <thead>
+            <tr>
+                <th *ngFor="let column of headers" style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{column}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of triples">
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.order}}
+                </td>
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.size.name}}
+                </td>
+                <td style="color: black;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;font-size: larger;">
+                    {{row.price}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>

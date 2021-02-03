@@ -11,6 +11,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 import { OrderComponent } from './pages/order/order.component';
 import { BillComponent } from './pages/bill/bill.component';
+import { ReportsComponent } from './pages/reports/reports.component';
+import { VentasPorTamanoComponent } from './pages/ventas-por-tamano/ventas-por-tamano.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { BillComponent } from './pages/bill/bill.component';
     HomeComponent,
     NopagefoundComponent,
     OrderComponent,
-    BillComponent
+    BillComponent,
+    ReportsComponent,
+    VentasPorTamanoComponent
   ],
   imports: [
     BrowserModule,

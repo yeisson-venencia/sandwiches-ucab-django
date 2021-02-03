@@ -29,7 +29,10 @@ export class HomeComponent implements OnInit {
 
   hacerFactura(){
     this.router.navigate(['/bill']);
+  }
 
+  reports(){
+    this.router.navigate(['/reports']);
   }
 
 }
