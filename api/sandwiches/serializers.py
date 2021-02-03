@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Order, Sand_Ing, Sandwich, Size, Ingredient
+from .models import Order, Sand_Ing, Sandwich, Size, Ingredient, User
   
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Size
+        model = User
         fields = '__all__'
 
 class SizeSerializer(serializers.ModelSerializer):

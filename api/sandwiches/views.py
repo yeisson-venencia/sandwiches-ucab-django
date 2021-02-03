@@ -42,12 +42,22 @@ def register_order(request):
     for r in request.data['sandwiches']:
         price_sandwich = float(r['size']['price'])
         for i in r['ingredients']:
-            price_sandwich += float(i['price']) # *float(i['rations'])
+            price_sandwich += float(i['price']) *float(i['rations'])
         r['price'] = price_sandwich
         price_order += price_sandwich
     request.data['price'] = price_order
 
-    order = Order.objects.create(price=request.data['price'], user=User.objects.get(id=request.data['user']['id']))
+    user = None
+    try:
+        user = User.objects.get(id=request.data['user']['id'])
+    except:
+        user = User.objects.create(
+            document=request.data['user']['document'],
+            first_name=request.data['user']['first_name'],
+            last_name=request.data['user']['last_name']
+        )
+
+    order = Order.objects.create(price=request.data['price'], user=user)
 
     for s in request.data['sandwiches']:
 
@@ -98,3 +108,14 @@ def get_sandwich_ingredient(request):
         sandwiches.add(si.sandwich)
     serializer = SandwichSerializer(sandwiches, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def verify_user(request):
+    try:
+        user = User.objects.get(document = request.data['document'])
+        serializer =  UserSerializer(user)
+        return Response(serializer.data)
+    except:
+        return JsonResponse({})
+    
+
